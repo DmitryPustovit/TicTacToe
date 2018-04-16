@@ -3,8 +3,7 @@ var players = ["p1", "p2"];
 var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0, pause = false, selectedDiv, Ai = 1;
 
     $('td').click(function (event){
-        console.log(player1);
-        
+
         if(!$(this).hasClass( "marked" ))
         {
             if(player1)
@@ -12,7 +11,7 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
                 selectedDiv = $(this);
                 placeMarker(selectedDiv, 1);
                 turn++;
-                player1 = !player1;   
+                player1 = !player1;
             }
             else
             {
@@ -25,13 +24,13 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
                 else
                 {
                     //placeMarker(selectedDiv, 1);
-                    turn++; 
+                    turn++;
                 }
             }
-			
+
 			checkIfWon();
         }
-   
+
     });
 
     function placeMarker(div, player)
@@ -51,27 +50,27 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
 					div.addClass("p2");
                 break;
         }
-    } 
+    }
 
     //TODO: Clean Code
     function checkIfWon()
     {
-		
+
 		if(aiEnabled)
         {
 			if(Ai == 1)
             	randomAI();
-			
+
 			if(Ai == 2)
             	unbeatableAI();
-			
+
 			if(Ai == 3)
-            	showAlert("Learning AI Not Yet Opperational!"); 
+            	showAlert("Learning AI Not Yet Opperational!");
             //checkIfWon();
         }
-		
-		
-        var line = 0; 
+
+
+        var line = 0;
 
         for(i =0; i <= sqaures.length - 1; i+=3)
         {
@@ -91,27 +90,27 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
         if(check)
             hasWon();
 
-        //checkIfWon();    
+        //checkIfWon();
 
 
     }
 
     function checkForWinner(first, second, third, className)
-    {              
-        var gameWon = false; 
+    {
+        var gameWon = false;
 
         if($(first).hasClass(className) && $(second).hasClass(className) && $(third).hasClass(className))
-            gameWon = true; 
+            gameWon = true;
 
-        return gameWon; 
+        return gameWon;
     }
 
     function hasWon()
-    { 
-        
-        var lineDiv = $(".win"), lineH = $(".lineH"), lineV = $(".lineV"), lineL = $(".lineL"), lineR = $(".lineR"), line = $("line"), player; 
+    {
+
+        var lineDiv = $(".win"), lineH = $(".lineH"), lineV = $(".lineV"), lineL = $(".lineL"), lineR = $(".lineR"), line = $("line"), player;
         $("table *").addClass("marked");
-              
+
             if(player1)
             {
                 player = 2;
@@ -122,7 +121,7 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
                 player = 1;
                 line.css("stroke" , "#e74c3c");
             }
-        
+
             switch(winningLine)
             {
                 case 1:
@@ -158,21 +157,21 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
                         lineDiv.show();
                         lineDiv.css("padding-right" , "182px");
                         lineV.show();
-                    break; 
+                    break;
                 case 7:
                         lineDiv.show();
                         lineDiv.css("padding" , "0");
                         lineV.show();
-                    break; 
+                    break;
                 case 8:
                         lineDiv.css("padding" , "0");
                         lineDiv.show();
                         lineDiv.css("padding-left" , "182px");
                         lineV.show();
-                    break; 
-            }       
+                    break;
+            }
     }
-         
+
 // UI Elements
 
     function reset() {
@@ -185,9 +184,9 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
         $(".lineL").hide();
         $(".lineR").hide();
         $(".win").hide();
-        player1 = true; 
+        player1 = true;
         check = false;
-        winningLine = 0; 
+        winningLine = 0;
         turn = 0;
     }
 
@@ -196,15 +195,15 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
         if(pause == false)
         {
             pause = true;
-            
+
             if($(".checkBox").is(":checked"))
                 aiEnabled = false;
-            else 
+            else
                 aiEnabled = true;
                 //aiEnabled = !aiEnabled;
-            
+
             var text;
-            
+
             if(aiEnabled)
 			{
 				if(Ai == 1)
@@ -216,35 +215,37 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
 				if(Ai == 3)
 					text = "AI is Enabled : Learning AI";
             //checkIfWon();
-                
+
 			}
             else
                 text = " AI is Disabled";
-            
-            showAlert(text);   
-            
+
+            showAlert(text);
+
             reset();
         }
     }
-          
+
     $('.settings').click(function (){
-        $(".menu").show();
+        $("#settingsMenu").show();
     });
-          
+
     function closeMenu(){
-        $(".menu").hide();     
+        $("#settingsMenu").hide();
+        closeMenuQuestion();
     }
-          
+
     function showAlert(text)
     {
-        var box = $(".alert");  
+        var menu = $("#alertMenu");
+        var box = $(".alert");
         box.html(text);
-        box.show();
-        
+        menu.show();
+
         setTimeout(
-            function() 
+            function()
             {
-                box.fadeOut( "slow", function() {pause = false;});
+                menu.fadeOut( "slow", function() {pause = false;});
             }, 1500);
     }
 
@@ -258,21 +259,21 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
                 $("#s2").prop("checked", false);
                 $("#s3").prop("checked", false);
                 Ai = 1;
-                break; 
+                break;
 
             case 2:
                 $("#s1").prop("checked", false);
                 $("#s2").prop("checked", true);
                 $("#s3").prop("checked", false);
                 Ai = 2;
-                break; 
+                break;
 
             case 3:
                 $("#s1").prop("checked", false);
                 $("#s2").prop("checked", false);
                 $("#s3").prop("checked", true);
                 Ai = 3;
-                break; 
+                break;
         }
     }
 
@@ -284,32 +285,32 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
         {
             case 1:
                 text = "Random AI: This AI places a circle in a random spot as long as that spot is not already occupid.";
-                break; 
+                break;
 
             case 2:
                 text = "Mapped AI: This AI places a circle according to a set of preprogrammed rules. Not very fun. Can not set or defeat forks yet.";
-                break; 
+                break;
 
             case 3:
                 text = "Learning AI: This AI places a circle according to the players past games. It is used player data rather then any set of rules.";
-                break; 
+                break;
         }
         $(".QuestionMenu p").html(text);
-        $(".QuestionMenu").show(); 
+        $(".QuestionMenu").show();
     }
 
     function closeMenuQuestion()
     {
-        $(".QuestionMenu").hide(); 
+        $(".QuestionMenu").hide();
     }
-          
+
 //AIs
 
     //Super Basic Ai that just plots its move into a random point if the point is not already marked.
     function randomAI()
     {
         var randomPosisiton;
-        
+
         if(turn < 8 && check == false)
         {
             do
@@ -321,13 +322,13 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
             placeMarker( $(sqaures[randomPosisiton]), 2);
             turn++;
             player1 = !player1;
-        }          
+        }
     }
 
     //Every moved mapped, just avoid player winning
     function unbeatableAI()
     {
-		player1 = !player1; 
+		player1 = !player1;
 		              var corners = [".c1" , ".c9" , ".c3" , ".c7"];
 		var movePerformed = false;
     //Wins or Blocks Opponet from Winning (Doesn't fully work...
@@ -339,24 +340,20 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
                 if($(sqaures[i]).hasClass(className) && $(sqaures[i + 1]).hasClass(className) && !$(sqaures[i + 2]).hasClass("marked") && movePerformed == false)
                 {
                     placeMarker( $(sqaures[i + 2]), 2);
-					console.log("1");
-					console.log("1");
 					movePerformed = true;
                     //turn++;
                     //player1 = !player1;
-                }              
+                }
                else if(!$(sqaures[i]).hasClass("marked") && $(sqaures[i+1]).hasClass(className) && $(sqaures[i+2]).hasClass(className) && movePerformed == false)
                {
                 	placeMarker( $(sqaures[i]), 2);
-				   console.log("2" + sqaures[i]);
 				   movePerformed = true;
                 	//turn++;
                     //player1 = !player1;
-                }          
+                }
                else if($(sqaures[i]).hasClass(className) && !$(sqaures[i+1]).hasClass("marked") && $(sqaures[i+2]).hasClass(className) && movePerformed == false)
                {
                    placeMarker( $(sqaures[i+1]), 2);
-				   console.log("3" + sqaures[i + 1]);
 				   movePerformed = true;
                 //    turn++;
                     //player1 = !player1;
@@ -374,7 +371,7 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
                             turn++;
                             player1 = !player1;
                     }
-              
+
                     if($(".c3").hasClass("p2") && !$(".c7").hasClass("marked"))
                     {
                             $(sqaures[".c9"]).html("O");
@@ -393,7 +390,7 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
                             turn++;
                             player1 = !player1;
                     }
-              
+
                     if($(".c1").hasClass("p2") && $(".c9").hasClass("p2") && !$(".c7").hasClass("marked"))
                     {
                             $(sqaures[".c7"]).html("O");
@@ -403,7 +400,7 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
                             turn++;
                             player1 = !player1;
                     }
-              
+
                     if($(".c3").hasClass("p2") && $(".c7").hasClass("p2") && !$(".c9").hasClass("marked"))
                     {
                             $(sqaures[".c9"]).html("O");
@@ -433,7 +430,7 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
                             turn++;
                             player1 = !player1;
                     }
-              
+
                     if($(".c1").hasClass("p1") && $(".c9").hasClass("p1") && !$(".c7").hasClass("marked"))
                     {
                             $(sqaures[".c7"]).html("O");
@@ -443,7 +440,7 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
                             turn++;
                             player1 = !player1;
                     }
-              
+
                     if($(".c3").hasClass("p1") && $(".c7").hasClass("p1") && !$(".c9").hasClass("marked"))
                     {
                             $(sqaures[".c9"]).html("O");
@@ -472,53 +469,52 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
                             //player1 = !player1;
                    }
              //Opposite corner
-                else if($(".c1").hasClass("p1") && !$(".c9").hasClass("marked")  && movePerformed == false) 
+                else if($(".c1").hasClass("p1") && !$(".c9").hasClass("marked")  && movePerformed == false)
                 {
 					placeMarker($(".c9"), 2);
 					movePerformed = true;
                     //turn++;
                     //player1 = !player1;
                 }
-				else if($(".c9").hasClass("p1") && !$(".c1").hasClass("marked")  && movePerformed == false) 
+				else if($(".c9").hasClass("p1") && !$(".c1").hasClass("marked")  && movePerformed == false)
                 {
 					placeMarker($(".c1"), 2);
 					movePerformed = true;
                     //turn++;
                    // player1 = !player1;
                 }
-				else if($(".c3").hasClass("p1") && !$(".c7").hasClass("marked")  && movePerformed == false) 
+				else if($(".c3").hasClass("p1") && !$(".c7").hasClass("marked")  && movePerformed == false)
                 {
 					placeMarker($(".c7"), 2);
 					movePerformed = true;
                     //turn++;
                     //player1 = !player1;
-                } 
-                else if($(".c7").hasClass("p1") && !$(".c3").hasClass("marked")  && movePerformed == false) 
+                }
+                else if($(".c7").hasClass("p1") && !$(".c3").hasClass("marked")  && movePerformed == false)
                 {
 					placeMarker($(".c3"), 2);
 					movePerformed = true;
                     //turn++;
                     //player1 = !player1;
-                } 
+                }
               	else
 				{
 
 					  //Empty Corner
 
 					  var randomCorner = Math.floor(Math.random() * 4), emptyA = true, count = 0;
-					
+
 					 do
 					 {
-						 console.log("test 123");
-						 
+
 						 if(!$(corners[randomCorner]).hasClass("marked"))
 							 emptyA = false;
 						 else
 							 randomCorner = Math.floor(Math.random() * 4);
-						 
+
 						 count++;
 					 }while(emptyA && count <= 4);
-					
+
 					  if(!emptyA && movePerformed == false)
 					  {
 						  placeMarker($(corners[randomCorner]), 2);
@@ -532,7 +528,7 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
 					  //Empty middle side
 					  var middleSides = [".c2" , ".c4" , ".c6" , ".c8"];
 					  randomCorner = Math.floor(Math.random() * 4);
-					  var emptyB = true;  
+					  var emptyB = true;
 					 	do
 					 {
 						 if(!$(middleSides[randomCorner]).hasClass("marked"))
@@ -541,7 +537,7 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
 							 randomCorner = Math.floor(Math.random() * 4);
 						 count++;
 					 	}while(emptyA && count <= 4);
-						  
+
 						  if(!emptyB && movePerformed == false)
 						  {
 							  placeMarker($(middleSides[randomCorner]), 2);

@@ -1,10 +1,10 @@
  body{padding: 0; margin: 0;}
         .game{}
         table{
-            //margin: auto;  
+            //margin: auto;
             border-spacing: 0;
             font-family: 'Indie Flower', cursive;
-            
+
             position: absolute;
             top: 50%;
             left: 50%;
@@ -17,12 +17,12 @@
               -khtml-user-select: none;    /* Konqueror */
               -moz-user-select: none;      /* Firefox */
               -ms-user-select: none;       /* Internet Explorer/Edge */
-              user-select: none; 
+              user-select: none;
             cursor: pointer;
-            -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+            -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
                     }
         td{
-         margin: 0;  
+         margin: 0;
          padding: 10px 30px;
          font-size: 40px;
             color:white;
@@ -31,31 +31,31 @@
             text-align: center;
         }
         .bot{
-         border-bottom: solid 1px #34495e;   
+         border-bottom: solid 1px #34495e;
         }
         .top{
-         border-top: solid 1px #34495e;   
+         border-top: solid 1px #34495e;
         }
         .right{
-        border-right: solid 1px #34495e; 
+        border-right: solid 1px #34495e;
         }
         .left{
-        border-left: solid 1px #34495e;   
+        border-left: solid 1px #34495e;
         }
         .win{
         position: absolute;
-            height: 270px;     
-         width: 300px;   
+            height: 270px;
+         width: 300px;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             -webkit-transform: translate(-50%, -50%);
             //padding-bottom: 158px;
             display: none;
-        } 
+        }
         .reset
           {
-           padding: 20px 80px;   
+           padding: 20px 80px;
               position: absolute;
                           bottom: 100px;
             left: 50%;
@@ -72,11 +72,11 @@
               -khtml-user-select: none;    /* Konqueror */
               -moz-user-select: none;      /* Firefox */
               -ms-user-select: none;       /* Internet Explorer/Edge */
-              user-select: none; 
+              user-select: none;
           }
         .aiToggle
           {
-           //padding: 20px 0px;   
+           //padding: 20px 0px;
               position: absolute;
             top: 100px;
             left: 50%;
@@ -95,7 +95,7 @@
               -khtml-user-select: none;    /* Konqueror */
               -moz-user-select: none;      /* Firefox */
               -ms-user-select: none;       /* Internet Explorer/Edge */
-              user-select: none; 
+              user-select: none;
           }
           .alert
           {
@@ -111,13 +111,12 @@
               background-color: #34495e;
               color: white;
               padding: 20px 0;
-              display: none;
                           -webkit-touch-callout: none; /* iOS Safari */
               -webkit-user-select: none;   /* Chrome/Safari/Opera */
               -khtml-user-select: none;    /* Konqueror */
               -moz-user-select: none;      /* Firefox */
               -ms-user-select: none;       /* Internet Explorer/Edge */
-              user-select: none; 
+              user-select: none;
           }
           .settings{
                 position: absolute;
@@ -125,7 +124,7 @@
                 left: 30px;
               cursor: pointer;
           }
-          
+
           /* The switch - the box around the slider */
             .switch {
               position: relative;
@@ -177,32 +176,33 @@
               -ms-transform: translateX(26px);
               transform: translateX(26px);
             }
-          
+
           .menu{
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             -webkit-transform: translate(-50%, -50%);
-              height: 300px;
+              height: 180px;
               width: 300px;
               background: #34495e;
               color: white;
               padding: 20px;
               font-family: 'Quicksand', sans-serif;
-              display: none;
+              z-index: 2;
+              box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
           }
 
 		.checkBoxMenu{
 			margin-top: 40px;
 		}
-		
+
 		.question{
-			border: solid 1px white; 	
+			border: solid 1px white;
 			position: absolute;
 			right: 40px;
 			margin-top: 6px;
-			padding: 2px 6px;
+			padding: 2px 8px;
 			border-radius: 40px;
 			cursor: pointer;
 		}
@@ -220,19 +220,31 @@
 		              padding: 20px;
               font-family: 'Quicksand', sans-serif;
 		display: none;
+    z-index: 4;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 	}
+
+  .menuHolder{
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    display: none;
+    background: rgba(149, 165, 166,0.6);
+
+  }
 
             @media (max-height: 700px) {
                 .aiToggle{
                     top: 60px;
                 }
-                
+
                 .reset{
-                    bottom: 60px;   
+                    bottom: 60px;
                 }
-                
+
             }
-<!-- 
+<!--
 font-family: 'Indie Flower', cursive;
 
 font-family: 'Poiret One', cursive;
