@@ -421,44 +421,6 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
                     }
 
                 //Blocks Fork
-                    if($(".c1").hasClass("p1") && $(".c9").hasClass("p1") && !$(".c3").hasClass("marked"))
-                    {
-                            $(sqaures[".c3"]).html("O");
-                            $(sqaures[".c3"]).css("color" , "#3498db");
-                            $(sqaures[".c3"]).addClass("marked");
-                            $(sqaures[".c3"]).addClass("p2");
-                            turn++;
-                            player1 = !player1;
-                    }
-
-                    if($(".c1").hasClass("p1") && $(".c9").hasClass("p1") && !$(".c7").hasClass("marked"))
-                    {
-                            $(sqaures[".c7"]).html("O");
-                            $(sqaures[".c7"]).css("color" , "#3498db");
-                            $(sqaures[".c7"]).addClass("marked");
-                            $(sqaures[".c7"]).addClass("p2");
-                            turn++;
-                            player1 = !player1;
-                    }
-
-                    if($(".c3").hasClass("p1") && $(".c7").hasClass("p1") && !$(".c9").hasClass("marked"))
-                    {
-                            $(sqaures[".c9"]).html("O");
-                            $(sqaures[".c9"]).css("color" , "#3498db");
-                            $(sqaures[".c9"]).addClass("marked");
-                            $(sqaures[".c9"]).addClass("p2");
-                            turn++;
-                            player1 = !player1;
-                    }
-                    if($(".c7").hasClass("p1") && $(".c3").hasClass("p1") && !$(".c1").hasClass("marked"))
-                    {
-                            $(sqaures[".c1"]).html("O");
-                            $(sqaures[".c1"]).css("color" , "#3498db");
-                            $(sqaures[".c1"]).addClass("marked");
-                            $(sqaures[".c1"]).addClass("p2");
-                            turn++;
-                            player1 = !player1;
-                    }
 					*/
                 // Center
                   if(!($(".c5").hasClass("marked")) && movePerformed == false)
@@ -496,6 +458,29 @@ var player1 = true, check = false, winningLine = 0, aiEnabled = false, turn = 0,
 					movePerformed = true;
                     //turn++;
                     //player1 = !player1;
+                }
+
+                else if($(".c1").hasClass("p1") && $(".c9").hasClass("p1") && !$(".c3").hasClass("marked"))
+                {
+                        placeMarker($(".c3"), 2);
+                        movePerformed = true;
+                }
+
+                else if($(".c1").hasClass("p1") && $(".c9").hasClass("p1") && !$(".c7").hasClass("marked"))
+                {
+                        placeMarker($(".c7"), 2);
+                        movePerformed = true;
+                }
+
+                else if($(".c3").hasClass("p1") && $(".c7").hasClass("p1") && !$(".c9").hasClass("marked"))
+                {
+                      placeMarker($(".c9"), 2);
+                        movePerformed = true;
+                }
+                else if($(".c7").hasClass("p1") && $(".c3").hasClass("p1") && !$(".c1").hasClass("marked"))
+                {
+                      placeMarker($(".c1"), 2);
+                        movePerformed = true;
                 }
               	else
 				{
